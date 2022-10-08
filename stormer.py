@@ -229,28 +229,28 @@ for (n,p) in enumerate(primegen(), start=1):
         assert x + 2 == y, (x, y, primes, abc)
         assert issmooth(x, primes), (x, y, primes, abc)
         assert issmooth(y, primes), (x, y, primes, abc)
-        # total     = A#?     = number of x such that x and x+2 are both primes-smooth.
-        # maxsol    = A#?     = maximum   x such that x and x+2 are both primes-smooth.
-        # totalnew  = A#?     = number of x such that x and x+2 are both primes-smooth and          one is divisible by p.
-        # maxnew    = A#?     = largest   x such that x and x+2 are both primes-smooth and          one is divisible by p.
-        # total1    = A002071 = number of x such that x and x+1 are both primes-smooth.
-        #                       number of x such that x and x+2 are both primes-smooth and even.
-        # max1      = A002072 = largest   x such that x and x+1 are both primes-smooth.  Equivalently,
-        #                       largest   x such that x and x+2 are both primes-smooth and even.
-        # total1new = A145604 = number of x such that x and x+1 are both primes-smooth and          one is divisible by p.  Equivalently,
-        #                       number of x such that x and x+2 are both primes-smooth and even and one is divisible by p.
-        # max1new   = A145606 = largest   x such that x and x+1 are both primes-smooth and          one is divisible by p.  Equivalently,
-        #                       largest   x such that x and x+2 are both primes-smooth and even and one is divisible by p.
-        # total2    = A#?     = number of x such that x and x+2 are both primes-smooth and odd.  Equivalently,
-        #                       number of x such that x and x+2 are both primes-smooth and (x, x+2) does not arise from an (x, x+1) pair.
-        # max2      = A#?     = largest   x such that x and x+2 are both primes-smooth and odd.  Equivalently,
-        #                       largest   x such that x and x+2 are both primes-smooth and (x, x+2) does not arise from an (x, x+1) pair.
-        # total2new = A#?     = number of x such that x and x+2 are both primes-smooth and odd and  one is divisible by p.  Equivalently,
-        #                       number of x such that x and x+2 are both primes-smooth and (x, x+2) does not arise from an (x, x+1) pair.
-        # max2new   = A#?     = largest   x such that x and x+2 are both primes-smooth and odd and  one is divisible by p.  Equivalently,
-        #                       number of x such that x and x+2 are both primes-smooth and (x, x+2) does not arise from an (x, x+1) pair.
-        # total1sq  = A117582 = number of x such that x and x+1 are both primes-smooth and x+1 is square.
-        # total1tri = A117583 = number of x such that x and x+1 are both primes-smooth and x+1 is triangular.
+        # total     = A#?         = number of x such that x and x+2 are both primes-smooth.
+        # maxsol    = A#?         = maximum   x such that x and x+2 are both primes-smooth.
+        # totalnew  = A181471     = number of x such that x and x+2 are both primes-smooth and          one is divisible by p.
+        # maxnew    = A175607 - 1 = largest   x such that x and x+2 are both primes-smooth and          one is divisible by p.
+        # total1    = A002071     = number of x such that x and x+1 are both primes-smooth.
+        #                           number of x such that x and x+2 are both primes-smooth and even.
+        # max1      = A002072     = largest   x such that x and x+1 are both primes-smooth.  Equivalently,
+        #                           largest   x such that x and x+2 are both primes-smooth and even.
+        # total1new = A145604     = number of x such that x and x+1 are both primes-smooth and          one is divisible by p.  Equivalently,
+        #                           number of x such that x and x+2 are both primes-smooth and even and one is divisible by p.
+        # max1new   = A145606     = largest   x such that x and x+1 are both primes-smooth and          one is divisible by p.  Equivalently,
+        #                           largest   x such that x and x+2 are both primes-smooth and even and one is divisible by p.
+        # total2    = A#?         = number of x such that x and x+2 are both primes-smooth and odd.  Equivalently,
+        #                           number of x such that x and x+2 are both primes-smooth and (x, x+2) does not arise from an (x, x+1) pair.
+        # max2      = A#?         = largest   x such that x and x+2 are both primes-smooth and odd.  Equivalently,
+        #                           largest   x such that x and x+2 are both primes-smooth and (x, x+2) does not arise from an (x, x+1) pair.
+        # total2new = A#?         = number of x such that x and x+2 are both primes-smooth and odd and  one is divisible by p.  Equivalently,
+        #                           number of x such that x and x+2 are both primes-smooth and (x, x+2) does not arise from an (x, x+1) pair.
+        # max2new   = A#?         = largest   x such that x and x+2 are both primes-smooth and odd and  one is divisible by p.  Equivalently,
+        #                           number of x such that x and x+2 are both primes-smooth and (x, x+2) does not arise from an (x, x+1) pair.
+        # total1sq  = A117582     = number of x such that x and x+1 are both primes-smooth and x+1 is square.
+        # total1tri = A117583     = number of x such that x and x+1 are both primes-smooth and x+1 is triangular.
         total += 1
         if x > maxsol: maxsol = x
         if x % 2 == y % 2 == 0:
