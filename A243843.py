@@ -1,12 +1,9 @@
 #! /usr/bin/env python3
 
-# A243843: a(n) is the smallest semiprime that belongs to a cycle of length n under repeated iteration
-# of the map (k -> concatenation of prime divisors of k) until a non-semiprime is reached.
+# A243843: a(n) is the smallest squarefree semiprime that belongs to a sequence of length n under repeated iteration of the map
+# (k -> concatenation of prime divisors of k in increasing order) until a number is reached that is not a squarefree semiprime.
 
-# TODO: clarify that this sequence uses the squarefree semiprimes.
-# TODO: use a word other than "cycle", which suggests periodic behavior.
-
-from labmath import * # available via pip (https://pypi.org/project/labmath/)
+from labmath import *
 
 results = {}
 minunknown = 1
