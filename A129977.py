@@ -7,7 +7,7 @@ from gmpy2 import fac, mpq
 
 basis = list(primegen(10**5))
 
-for m in count(6990):
+for m in count(1):
     print('\b'*42, m, end=' ', flush=True)
     sn = sum(mpq(m**(k-1), fac(k)) for k in range(1, m+1)).numerator
     print(sn.bit_length(), end='    ', flush=True)
