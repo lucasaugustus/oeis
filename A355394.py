@@ -2,7 +2,7 @@
 
 # Number of integer partitions of n such that, for all parts x, x - 1 or x + 1 is also a part.
 
-from labmath import *
+from labmath import *       # Available via pip (https://pypi.org/project/labmath/)
 
 print("0 1")
 
