@@ -1,7 +1,6 @@
 #! /usr/bin/env python3
 
 from labmath import semiprimegen    # Available via pip (https://pypi.org/project/labmath/)
-from itertools import compress
 from time import time
 
 A106125, A106125sp = [], [] # Numbers n such that the nth semiprime ==  0 (mod n), and the corresponding semiprimes
