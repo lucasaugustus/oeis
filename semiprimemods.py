@@ -2,6 +2,7 @@
 
 from labmath import semiprimegen    # Available via pip (https://pypi.org/project/labmath/)
 from itertools import compress
+from time import time
 
 A106125, A106125sp = [], [] # Numbers n such that the nth semiprime ==  0 (mod n), and the corresponding semiprimes
 A106126, A106126sp = [], [] # Numbers n such that the nth semiprime ==  1 (mod n), and the corresponding semiprimes
@@ -15,14 +16,12 @@ A106133, A106133sp = [], [] # Numbers n such that the nth semiprime ==  8 (mod n
 A106134, A106134sp = [], [] # Numbers n such that the nth semiprime ==  9 (mod n), and the corresponding semiprimes
 A106135, A106135sp = [], [] # Numbers n such that the nth semiprime == 10 (mod n), and the corresponding semiprimes
 A106136, A106136sp = [], [] # Numbers n such that the nth semiprime == 11 (mod n), and the corresponding semiprimes
-A106125r  = [] # A106125 / A106125sp
+A106125r = [] # A106125 / A106125sp
 
 try:
     print("Press ctrl+c at any time to halt computation and print the results thus far.")
-    from time import time
     z = time()
     for (n,s) in enumerate(semiprimegen(), start=1):
-        #if n == 10**6: raise KeyboardInterrupt
         if n % 10**6 == 0: print('\b'*80 + "n: %de6    nth semprime: %d    seconds: %d" % (n//10**6, s, int(time() - z)), end='', flush=True)
         if (s -  0) % n == 0: A106125.append(n); A106125sp.append(s); A106125r.append(s//n)
         if (s -  1) % n == 0: A106126.append(n); A106126sp.append(s)
