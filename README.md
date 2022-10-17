@@ -1,2 +1,2 @@
 # oeis
-Code for my contributions to the OEIS
+Code for my contributions to the OEIS.
