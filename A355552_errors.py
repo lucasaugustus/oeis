@@ -134,21 +134,6 @@ print()
 
 # Now begins my own work, showing that the data is also wrong.
 
-def powerset(l):    # The input must be indexable.
-    n = len(l)
-    for mask in range(2**n): yield [l[i-1] for i in range(1, n+1) if mask & (1 << (i-1))]
-
-def are_collinear(a, b, c):
-    # Input: Three 2-tuples.
-    # Output: Returns True if the points a, b, and c are collinear, and False otherwise.
-    # Example: are_collinear((0,0), (1,1), (2,0)) returns False.
-    # Example: are_collinear((0,0), (1,1), (2,2)) returns True.
-    ax, ay = a
-    bx, by = b
-    cx, cy = c
-    area = ax * by + bx * cy + cx * ay - ax * cy - bx * ay - cx * by    # Twice the area of triangle abc
-    return area == 0
-
 def D3m(n):     # The number of 3-element diagonal sets.  The "m" stands "mine".
     # A 3-element diagonal set must have all of its x-coordinates distinct,
     # and its set of y-coordinates must be {0,1,2}, {0,1,3}, {0,2,3}, or {1,2,3}.
@@ -179,6 +164,21 @@ for n in range(1,32):
 
 """
 # The following is the brutest of brute force methods.  It examines every element of the powerset of the points in the grid.
+def powerset(l):    # The input must be indexable.
+    n = len(l)
+    for mask in range(2**n): yield [l[i-1] for i in range(1, n+1) if mask & (1 << (i-1))]
+
+def are_collinear(a, b, c):
+    # Input: Three 2-tuples.
+    # Output: Returns True if the points a, b, and c are collinear, and False otherwise.
+    # Example: are_collinear((0,0), (1,1), (2,0)) returns False.
+    # Example: are_collinear((0,0), (1,1), (2,2)) returns True.
+    ax, ay = a
+    bx, by = b
+    cx, cy = c
+    area = ax * by + bx * cy + cx * ay - ax * cy - bx * ay - cx * by    # Twice the area of triangle abc
+    return area == 0
+
 grid = []
 for n in count(1):
     grid.extend([(n-1,0), (n-1,1), (n-1,2), (n-1,3)])
