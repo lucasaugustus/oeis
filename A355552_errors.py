@@ -132,7 +132,7 @@ print()
 print()
 print()
 
-# Now begins my own work, showing that the data is wrong.
+# Now begins my own work, showing that the data is also wrong.
 
 def powerset(l):    # The input must be indexable.
     n = len(l)
