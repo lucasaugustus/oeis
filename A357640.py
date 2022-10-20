@@ -6,7 +6,7 @@
 
 # A reversed partition is one whose terms are arranged in increasing order.
 
-from labmath import *
+from labmath import *   # Available via pip (https://pypi.org/project/labmath/)
 
 print(0, 1)
 
