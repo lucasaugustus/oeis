@@ -1,6 +1,6 @@
 # oeis
 Code for my contributions to the OEIS.
-Many of these files import from the package ``labmath``.  This can be downloaded from <https://pypi.org/project/labmath> and nstalled via pip.
+Many of these files import from the package ``labmath``.  This can be downloaded from <https://pypi.org/project/labmath> and installed via pip.
 
 Most files are named according to the A-numbers that they compute.  For example, ``A350953+4+A356865.py`` computes A350953, A350954, and A356865.
 As of 2022-10-16, there are two exceptions:
