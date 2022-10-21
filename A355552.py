@@ -159,7 +159,6 @@ def E(n):   # The number of 3-element non-horizontal sets whose y-coordinates ar
 from itertools import count
 
 for n in count(1):
-    h, d3, d4 = H(n), D3(n), D4(n)
     h = H(n)                            # Number of horizontal sets
     d3 = D3(n)                          # Number of 3-element non-horizontal sets
     d4 = D4(n)                          # Number of 4-element non-horizontal sets
