@@ -129,7 +129,7 @@ def E(n):   # The number of 3-element non-horizontal sets whose y-coordinates ar
     10  5  5  5  5  5  5  5  5  5  5  .
     11  6  5  6  5  6  5  6  5  6  5  6
     
-    (See also https://www.desmos.com/calculator/4basnmr6au.)
+    (See also https://www.desmos.com/calculator/xnz2zle9t8.)
     
     The nonzero values of B(n,a) are controlled by the remainders of n and a modulo 2:
     
