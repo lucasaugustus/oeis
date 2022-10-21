@@ -169,7 +169,6 @@ def D3_count(n):     # The number of 3-element diagonal sets.
     return d3 * 2
 
 for n in range(1,32):
-    h, v, d3, d4 = H(n), V(n), D3_count(n), D4(n)
     h = H(n)                            # Number of horizontal sets
     v = V(n)                            # Number of vertical sets
     d3 = D3_count(n)                    # Number of 3-element diagonal sets
