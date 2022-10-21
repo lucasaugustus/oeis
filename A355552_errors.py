@@ -60,7 +60,7 @@ def D4(n):  # The number of 4-element diagonal sets.
     Let B(n,a) be the number of b-values such that the whole set of 4 points is within the grid and is not horizontal.
     Note that this includes the vertical sets.
     
-    To illustrate the next bit, I have prepared https://www.desmos.com/calculator/jjp158gplq.
+    To illustrate the next bit, I have prepared https://www.desmos.com/calculator/flrhvksmng.
     To use it to obtain B(n,a), set the n-slider and a-slider to the desired values and count the number of times that the green
     lines cross the thick black line (including the line's endpoints).
     
