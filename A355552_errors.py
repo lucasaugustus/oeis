@@ -60,7 +60,7 @@ def D4(n):  # The number of 4-element diagonal sets.
     Let B(n,a) be the number of b-values such that the whole set of 4 points is within the grid and is not horizontal.
     Note that this includes the vertical sets.
     
-    To illustrate the next bit, I have prepared https://www.desmos.com/calculator/tca6jzrelv.
+    To illustrate the next bit, I have prepared https://www.desmos.com/calculator/jjp158gplq.
     To use it to obtain B(n,a), set the n-slider and a-slider to the desired values and count the number of times that the green
     lines cross the thick black line (including the line's endpoints).
     
@@ -68,7 +68,7 @@ def D4(n):  # The number of 4-element diagonal sets.
     n\a 0  1  2  3  4  5  6  7  8  9 10
     1   1  .  .  .  .  .  .  .  .  .  .
     2   1  1  .  .  .  .  .  .  .  .  .
-    3   1  1  1  .  .  .  .  .  .  .  .
+    3   1  1  1  .  .  .  .  .  .  .  .         
     4   2  1  1  2  .  .  .  .  .  .  .
     5   2  2  1  2  2  .  .  .  .  .  .
     6   2  2  2  2  2  2  .  .  .  .  .
@@ -78,16 +78,31 @@ def D4(n):  # The number of 4-element diagonal sets.
     10  4  3  3  4  3  3  4  3  3  4  .
     11  4  4  3  4  4  3  4  4  3  4  4
     
-    The sum of row n is D4(n) + n: D4(n) for the diagonal lines, plus n for the verticals.
+    The nonzero values of B(n,a) are controlled by the remainders of n and a modulo 3:
+    
+    If n % 3 == 0 and a % 3 == 0, then B(n, a) == n / 3.
+    If n % 3 == 0 and a % 3 == 1, then B(n, a) == n / 3.
+    If n % 3 == 0 and a % 3 == 2, then B(n, a) == n / 3.
+    
+    If n % 3 == 1 and a % 3 == 0, then B(n, a) == (n + 2) / 3.
+    If n % 3 == 1 and a % 3 == 1, then B(n, a) == (n - 1) / 3.
+    If n % 3 == 1 and a % 3 == 2, then B(n, a) == (n - 1) / 3.
+    
+    If n % 3 == 2 and a % 3 == 0, then B(n, a) == (n + 2) / 3.
+    If n % 3 == 2 and a % 3 == 1, then B(n, a) == (n + 2) / 3.
+    If n % 3 == 2 and a % 3 == 2, then B(n, a) == (n - 1) / 3.
+    
+    Recall that this grid counts not the diagonal sets but the non-horizontal sets.
+    Therefore, the sum of row n is D4(n) + n: D4(n) for the diagonal lines, plus n for the verticals.
     
     Let k be a positive integer.  Then row 3*k of that table consists of 3*k copies of k, so
         D4(3*k)   + n == 3*k^2.
-    To obtain row 3*k+1, we increment the nonzero entries with a % 3 == 0 and append k+1, so
-        D4(3*k+1) + n == 3*k^2 + k + (k+1) == 3*k^2 + 2*k + 1.
-    To obtain row 3*k+2, we increment the nonzero entries with a % 3 == 1 and append another k+1, so
-        D4(3*k+2) + n == 3*k^2 + 2*k + 1 + k + (k+1) == 3*k^2 + 4*k + 2.
+    Row 3*k+1 contains k copies of (k+1, k, k) and an additional k+1 at the end, so
+        D4(3*k+1) + n == k * (3*k + 1) + (k + 1) == 3*k^2 + 2*k + 1.
+    Row 3*k+2 contains k copies of (k+1, k+1, k) and an additional (k+1, k+1) at the end, so
+        D4(3*k+2) + n == k * (3*k + 2) + 2 * (k+1) == 3*k^2 + 4*k + 2.
     Bringing those +n terms to the RHS yields
-        D4(3*k)   == 3*k^2 - 3*k,
+        D4(3*k)   == 3*k^2           - (3*k  ),
         D4(3*k+1) == 3*k^2 + 2*k + 1 - (3*k+1), and
         D4(3*k+2) == 3*k^2 + 4*k + 2 - (3*k+2),
     so
@@ -134,7 +149,8 @@ print()
 
 # Now begins my own work, showing that the data is also wrong.
 
-def D3m(n):     # The number of 3-element diagonal sets.  The "m" stands "mine".
+def D3_count(n):     # The number of 3-element diagonal sets.
+    # The "_count" in the function name indicates that this operates by counting the sets one by one.
     # A 3-element diagonal set must have all of its x-coordinates distinct,
     # and its set of y-coordinates must be {0,1,2}, {0,1,3}, {0,2,3}, or {1,2,3}.
     # There is a bijection between the {0,1,2} sets and the {1,2,3} sets by replacing the y-coordinate y with 3-y,
@@ -153,52 +169,13 @@ def D3m(n):     # The number of 3-element diagonal sets.  The "m" stands "mine".
     return d3 * 2
 
 for n in range(1,32):
-    h, v, d3, d4 = H(n), V(n), D3m(n), D4(n)
+    h, v, d3, d4 = H(n), V(n), D3_count(n), D4(n)
     h = H(n)                            # Number of horizontal sets
     v = V(n)                            # Number of vertical sets
-    d3 = D3m(n)                         # Number of 3-element diagonal sets
+    d3 = D3_count(n)                    # Number of 3-element diagonal sets
     d4 = D4(n)                          # Number of 4-element diagonal sets
     ans = h + v + d3 + d4
     diff = A355552[n] - ans
     print(n, h, v, d3, d4, ans, diff)
 
-"""
-# The following is the brutest of brute force methods.  It examines every element of the powerset of the points in the grid.
-def powerset(l):    # The input must be indexable.
-    n = len(l)
-    for mask in range(2**n): yield [l[i-1] for i in range(1, n+1) if mask & (1 << (i-1))]
-
-def are_collinear(a, b, c):
-    # Input: Three 2-tuples.
-    # Output: Returns True if the points a, b, and c are collinear, and False otherwise.
-    # Example: are_collinear((0,0), (1,1), (2,0)) returns False.
-    # Example: are_collinear((0,0), (1,1), (2,2)) returns True.
-    ax, ay = a
-    bx, by = b
-    cx, cy = c
-    area = ax * by + bx * cy + cx * ay - ax * cy - bx * ay - cx * by    # Twice the area of triangle abc
-    return area == 0
-
-grid = []
-for n in count(1):
-    grid.extend([(n-1,0), (n-1,1), (n-1,2), (n-1,3)])
-    totalcollinear = 0
-    H, V, D3, D4 = 0, 0, 0, 0
-    for points in powerset(grid):
-        if len(points) < 3: continue    # We are only interested in sets of 3 or more.
-        if all(are_collinear(points[0], points[1], points[k]) for k in range(2, len(points))):
-            totalcollinear += 1
-            exes = set()
-            whys = set()
-            for (x,y) in points:
-                exes.add(x)
-                whys.add(y)
-            if   len(exes) == 1: V += 1     # All x-coords equal ==> vertical
-            elif len(whys) == 1: H += 1     # All y-coords equal ==> horizontal
-            else:                           # Diagonal
-                assert len(points) < 5      # Cannot have a diagonal line with 5 or more points on a 4xn grid
-                if len(points) == 3: D3 += 1
-                if len(points) == 4: D4 += 1
-        assert totalcollinear == V + H + D3 + D4
-    print(n, H, V, D3, D4, totalcollinear)
-"""
+print("If the given data were correct, then the last column would be all zeros.")
