@@ -44,7 +44,7 @@ def D4(n):  # The number of 4-element non-horizontal sets.
     
     Let B(n,a) be the number of b-values such that the whole set of 4 points is within the grid and is not horizontal.
     
-    To illustrate the next bit, I have prepared https://www.desmos.com/calculator/jjp158gplq.
+    To illustrate the next bit, I have prepared https://www.desmos.com/calculator/flrhvksmng.
     To use it to obtain B(n,a), set the n-slider and a-slider to the desired values and count the number of times that the green
     lines cross the thick black line (including the line's endpoints).
     
@@ -128,6 +128,8 @@ def E(n):   # The number of 3-element non-horizontal sets whose y-coordinates ar
     9   5  4  5  4  5  4  5  4  5  .  .
     10  5  5  5  5  5  5  5  5  5  5  .
     11  6  5  6  5  6  5  6  5  6  5  6
+    
+    (See also https://www.desmos.com/calculator/4basnmr6au.)
     
     The nonzero values of B(n,a) are controlled by the remainders of n and a modulo 2:
     
