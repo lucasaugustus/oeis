@@ -28,6 +28,8 @@ def H(n):   # The number of horizontal sets.
     There are 2**n subsets of those points.
     1 of those is empty, n have 1 element, and n * (n-1) / 2 have 2 elements.  None of those get counted.
     The rest are valid solutions, yielding 4 * (2**n - 1 - n * (n+1) / 2) horizontal sets of 3 or more points.
+    
+    OGF: 4 * x^3 / ( (x - 1)^3 * (2x - 1) )
     """
     return 2**(n+2) - 4 - 2*n*(n+1)
 
@@ -97,6 +99,8 @@ def D4(n):  # The number of 4-element non-horizontal sets.
         ((3*k+2)^2 + 2) // 3 == (9*k^2 + 12*k + 4 + 2) // 3 == (9*k^2 + 12*k + 6) // 3 == 3*k^2 + 4*k + 2.
     
     We have therefore shown that the number of non-horizontal sets is (n^2 + 2) // 3.
+    
+    OGF: -x * (x + 1) * (x^2 - x + 1) / ( (x - 1)^3 * (x^2 + x + 1) )
     """
     return (n**2 + 2) // 3
 
@@ -155,6 +159,8 @@ def E(n):   # The number of 3-element non-horizontal sets whose y-coordinates ar
         ((2*k+1)^2 + 1) // 2 == (4*k^2 + 4*k + 1 + 1) // 2 == (4*k^2 + 4*k + 2) // 2 == 2*k^2 + 2*k + 1.
     
     We have therefore shown that the number of 3-element non-horizontal sets whose y-coordinates are {0,1,2} is (n^2 + 1) // 2.
+    
+    OGF: -x * (x^2 + 1) / ( (x - 1)^3 * (x + 1) )
     """
     return (n**2 + 1) // 2
 
@@ -166,3 +172,5 @@ for n in count(1):
     d4 = D4(n)                          # Number of 4-element non-horizontal sets
     ans = h + d3 + d4
     print(n, ans)
+
+# OGF for a(n): -x * (6x^4 + 3x^3 - 2x^2 + 5) / ( (x - 1)^2 * (2x^2 + x - 1) * (x^2 + x + 1) )
