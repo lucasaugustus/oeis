@@ -45,8 +45,7 @@ def A355553(n):
         if t < 0: r, s, t = -r, -s, -t
         if t == 0 and s < 0: r, s = -r, -s
         if t == 0 and s == 0: r = -r
-        g = gcd(r, s)
-        g = gcd(g, t)
+        g = gcd(gcd(r, s), t)
         assert g > 0, (ax, ay, bx, by)
         r, s, t = r//g, s//g, t//g
         # r*x + s*y + t == 0 should now be the normalized form of the line through (ax,ay) and (bx,by).
