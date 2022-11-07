@@ -4,7 +4,7 @@
 
 # The points of the shall have x-coordinates 0, 1, 2, ..., n-1 and y-coordinates from the same set.
 
-from itertools import combinations
+from itertools import combinations, count
 from math import gcd
 
 def A355553(n):
@@ -60,10 +60,4 @@ def A355553(n):
         total += 2**n - 1 - n - ((n * (n-1)) // 2)
     return total
 
-data = [0, 0, 0, 8, 54, 228, 708, 1980, 4890, 11528, 25784, 57384, 123786, 264476,
-        563024, 1192220, 2508074, 5276608, 11059296, 23148288, 48360230, 100851580,
-        209959908, 436623036, 906557982, 1879883208, 3893521604, 8054908224, 16645435850]
-
-for n in range(1, 29):
-    an = A355553(n)
-    print(n, an, data[n] - an)
+for n in count(1): print(n, A355553(n))
