@@ -2,14 +2,14 @@
 
 # Number of ways to select 3 or more collinear points from an n X n grid.
 
-# The points of the shall have x-coordinates 0, 1, 2, ..., n-1 and y-coordinates from the same set.
+# The points of the grid shall have x-coordinates 0, 1, 2, ..., n-1 and y-coordinates from the same set.
 
 from itertools import combinations, count
 from math import gcd
 
 """
 A collinear set of 3 or more points in the grid corresponds to precisely one line that contains at least two grid points,
-and each line with at least two grid points has a chance of containing some number of collinear sets.
+and each line with at least two grid points has a chance of containing some number of collinear sets of 3 or more points.
 
 Our algorithm is therefore:
 1.  For every pair of points in the grid, determine a "normalized" equation for the line that passes through those points.
