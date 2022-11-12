@@ -2,7 +2,7 @@
 
 # A101765: Iccanobif semiprime indices: Indices of semiprime numbers in A001129.
 
-from labmath import *
+from labmath import *       # Available via pip (https://pypi.org/project/labmath/)
 from multiprocessing import Process, Queue as mpQueue
 
 print("The left column consists of candidates for A101763.")
