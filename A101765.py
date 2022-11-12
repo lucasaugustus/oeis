@@ -46,9 +46,9 @@ a, b = 1, 2
 q = mpQueue()
 for n in count(3):
     a, b = b, mpz(a) + mpz(''.join(reversed(str(b))))
-    #if n in (622, 630, 647, 817, 1247, 1402, 1422, 1477, 1649, 1781, 1818, 1867, 1874, 2115):
-    #    print('\b'*100 + "%d %d    hard    %d " % (n, len(str(a)), a))
-    #    continue
+    if n in (622, 630, 647, 817, 1247, 1402, 1422, 1477, 1649, 1781, 1818, 1867, 1874, 2115):
+        print('\b'*100 + "%d %d    hard    %d " % (n, len(str(a)), a))
+        continue
     print('\b'*100, n, len(str(a)), end=' ', flush=True)
     try:
         proc = Process(target=extract_prime_factor, args=(a, factors, q))
