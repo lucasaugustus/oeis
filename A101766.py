@@ -37,7 +37,7 @@ def extract_prime_factor(x, factors, output):
         if x % p == 0:
             output.put(p)
             return
-    p = next(primefac(x, methods=(ecm,)))
+    p = next(primefac(x))
     output.put(p)
 
 a, b = 1, 2
