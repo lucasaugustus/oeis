@@ -1,7 +1,7 @@
 #! /usr/bin/env python3
 
-from labmath import primegen, determinant, inf, factorial       # Available via pip (https://pypi.org/project/labmath/)
-from itertools import permutations, count, islice
+from labmath import determinant, inf, factorial       # Available via pip (https://pypi.org/project/labmath/)
+from itertools import permutations, count
 from time import time
 from datetime import datetime, timedelta
 
@@ -62,4 +62,3 @@ n: A358323(n) and A358324(n) and A358325(n)
 11: -2471079070511 and 2418538080316 and 4
 12: -197500419383964 and 215120941720912 and 1
 """
-
