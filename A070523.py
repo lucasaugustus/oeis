@@ -1,6 +1,6 @@
 #! /usr/bin/env python3
 
-from labmath import *
+from labmath import *       # Available via pip (https://pypi.org/project/labmath/)
 
 def isprimepower(n):
     """
