@@ -1,10 +1,6 @@
 #! /usr/bin/env python3
 
 from labmath import *
-from itertools import permutations, combinations
-from time import time, process_time as ptime
-from math import comb
-from gmpy2 import log10
 
 def isprimepower(n):
     """
@@ -58,4 +54,3 @@ for n in count(1):
 # 3, 6, 7, 14, 19, 31, 34, 66, 93, 307, 402, 421, 600, 848, 1022, 1057, 1906, 3772, 4184, 4364
 # All terms <= 1906 have been proven with Pari's ECPP.
 # No other terms <= 20000.
-
