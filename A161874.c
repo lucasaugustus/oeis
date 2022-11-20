@@ -64,7 +64,7 @@ The first resembles "2^16: 22 sec".
 This indicates that it has examined all bases up to 2^16, and that it took 22 seconds to do so.
 
 The second resembles "130 20".
-This that 130 is a base whose least unhappy number is > 2, and that the least unhappy number in that base is 20.
+This indicates that 130 is a base whose least unhappy number is > 2, and that the least unhappy number in that base is 20.
 
 2^16:     22 sec
 2^17:     85 sec (x3.86)
