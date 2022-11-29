@@ -1,6 +1,6 @@
 #! /usr/bin/env python3
 
-# Numbers n such that x^n + x^k + 1 is irreducible over GF(2), for various values of k.
+# Numbers n such that x^n + x^k + 1 is irreducible over GF(2), for 1 <= k <= 13.
 
 from labmath import *       # Available via pip (https://pypi.org/project/labmath/)
 
