@@ -16,7 +16,7 @@ try:
             print('\b'*42 + "%d %d" % (n, k), end=' ', flush=True)
             if (x^n+x^k+1).is_irreducible():
                 results[k].append(n)
-                print('\b'*42 + "A0574%s[%d] == %d" % (A[k], len(results[k]), n) )
+                print('\b'*42 + "A0574%s(%d) == %d" % (A[k], len(results[k]), n) )
 except KeyboardInterrupt:
     print("\n")
     for k in range(1, 14):
