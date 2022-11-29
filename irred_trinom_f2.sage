@@ -1,6 +1,6 @@
 #! /usr/bin/env sage
 
-# Numbers n such that x^n + x^10 + 1 is irreducible over GF(2).
+# Numbers n such that x^n + x^k + 1 is irreducible over GF(2), for various values of k.
 
 from itertools import count
 
