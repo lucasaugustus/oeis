@@ -62,8 +62,7 @@ try:
     for n in count(1):
         for k in range(1, 14):
             print('\b'*42 + "%d %d" % (n, k), end=' ', flush=True)
-            f = 1 ^ (1 << k) ^ (1 << n)
-            if xorirred(f):
+            if xorirred(1 ^ (1 << k) ^ (1 << n)):
                 results[k].append(n)
                 print('\b'*42 + "A0574%s(%d) == %d" % (A[k], len(results[k]), n) )
 except KeyboardInterrupt:
