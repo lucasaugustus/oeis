@@ -186,18 +186,16 @@ def factorint_mfs(n, mfs):
     return fac
 
 try:
-    mfs_limit = 6 * 10**8
+    mfs_limit = 10**8
     mfs = minfacsieve(mfs_limit)
     
-    data1 = [#(A358539, "A358539", is_ngonal),
-             #(A358540, "A358540", is_ngonal_pyramidal),
-             #(A358541, "A358541", is_centered_ngonal),
-             ]
-    data2 = [#(A358542, "A358542", is_tetrahedral),
+    data1 = [(A358539, "A358539", is_ngonal),
+             (A358540, "A358540", is_ngonal_pyramidal),
+             (A358541, "A358541", is_centered_ngonal)]
+    data2 = [(A358542, "A358542", is_tetrahedral),
              (A358543, "A358543", is_square_pyramidal),
-             #(A358544, "A358544", is_centered_triangular),
-             #(A358545, "A358545", is_centered_square),
-             ]
+             (A358544, "A358544", is_centered_triangular),
+             (A358545, "A358545", is_centered_square)]
 
     for x in count(1):
         if x % 1000 == 0: print('\b'*42, x, end='', flush=True)
