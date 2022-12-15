@@ -1,6 +1,6 @@
 #! /usr/bin/env python3
 
-# A358903: Number of integer partitions of n whose parts have all different numbers of distinct prime factors
+# A358901: Number of integer partitions of n whose parts have all different numbers of prime factors
 
 from labmath import *       # Available via pip (https://pypi.org/project/labmath/)
 
