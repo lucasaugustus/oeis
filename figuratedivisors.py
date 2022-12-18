@@ -6,13 +6,47 @@ print("Press ctrl+c at any time to halt and print a collated version of the resu
 
 # This file computes sequences from the OEIS that list the smallest numbers with exactly n divisors of various figurate types.
 # Specifically:
-A358539 = {}    # a(n) is the smallest number with exactly n divisors that are n-gonal numbers.
-A358540 = {}    # a(n) is the smallest number with exactly n divisors that are n-gonal pyramidal numbers.
-A358541 = {}    # a(n) is the smallest number with exactly n divisors that are centered n-gonal numbers.
-A358542 = {}    # a(n) is the smallest number with exactly n divisors that are tetrahedral numbers.
-A358543 = {}    # a(n) is the smallest number with exactly n divisors that are square pyramidal numbers.
-A358544 = {}    # a(n) is the smallest number with exactly n divisors that are centered triangular numbers.
-A358545 = {}    # a(n) is the smallest number with exactly n divisors that are centered square numbers.
+# A358539: a(n) is the smallest number with exactly n divisors that are n-gonal numbers.
+# A358540: a(n) is the smallest number with exactly n divisors that are n-gonal pyramidal numbers.
+# A358541: a(n) is the smallest number with exactly n divisors that are centered n-gonal numbers.
+# A358542: a(n) is the smallest number with exactly n divisors that are tetrahedral numbers.
+# A358543: a(n) is the smallest number with exactly n divisors that are square pyramidal numbers.
+# A358544: a(n) is the smallest number with exactly n divisors that are centered triangular numbers.
+# A358545: a(n) is the smallest number with exactly n divisors that are centered square numbers.
+
+A358539 = {3:6, 4:36, 5:210, 6:1260, 7:6426, 8:3360, 9:351000, 10:207900, 11:3749460, 12:1153152, 13:15036840, 14:204204000,
+           15:213825150, 16:11737440, 17:91797866160, 18:1006485480, 19:2310808500, 20:4966241280, 21:22651328700,
+           22:325269404460, 23:14266470332400, 24:11203920000, 25:256653797400, 26:45843256859400, 27:59207908359600,
+           28:46822406400}
+
+A358540 = {3:56, 4:140, 5:1440, 6:11550, 7:351120, 8:41580, 9:742560, 10:29279250, 11:8316000, 12:72348396120, 13:3386892600}
+
+A358541 = {3:20, 4:325, 5:912, 6:43771, 7:234784, 8:11025, 9:680680, 11:2470852896}
+
+A358542 = {1:1, 2:4, 3:56, 4:20, 5:120, 6:280, 7:560, 8:840, 9:1680, 10:10920, 11:9240, 12:18480, 13:55440, 14:120120,
+           15:240240, 16:314160, 17:628320, 18:1441440, 19:2282280, 20:7225680, 21:4564560, 22:9129120, 23:13693680,
+           24:27387360, 25:54774720, 26:68468400, 27:77597520, 28:136936800, 29:155195040, 30:310390080, 31:465585120,
+           32:775975200, 33:1163962800, 34:2715913200, 35:3569485920, 36:2327925600, 37:4655851200}
+
+A358543 = {1:1, 2:5, 3:30, 4:140, 5:420, 6:1540, 7:4620, 8:13860, 9:78540, 10:157080, 11:471240, 12:1141140, 13:3603600,
+           14:3423420, 15:13693680, 16:30630600, 17:58198140, 18:116396280, 19:214414200, 20:428828400, 21:581981400,
+           22:1163962800, 24:4073869800}
+
+A358544 = {1:1, 2:4, 3:20, 4:320, 5:460, 6:5440, 7:14260, 8:12920, 9:168640, 10:103360, 11:594320, 12:3878720, 13:2377280,
+           14:9211960, 15:18423920, 16:36847840, 17:125995840, 18:73695680, 19:865924240, 20:976467760, 21:1952935520,
+           22:3463696960, 23:3905871040}
+
+A358545 = {1:1, 2:5, 3:25, 4:325, 5:1625, 6:1105, 7:5525, 8:27625, 9:160225, 10:1022125, 11:801125, 12:5928325, 13:8491925,
+           14:29641625, 15:42459625, 16:444215525, 17:314201225, 18:2003613625, 19:1571006125}
+
+# Completeness data:
+# A358539: any missing terms are >=   75000000
+# A358540: any missing terms are >=   75000000
+# A358541: any missing terms are >= 5000000000
+# A358542: any missing terms are >= 5000000000
+# A358543: any missing terms are >= 5000000000
+# A358544: any missing terms are >= 5000000000
+# A358545: any missing terms are >= 5000000000
 
 def is_square(n):
     """
@@ -165,42 +199,20 @@ def is_ngonal(k, n):
 
 # TODO: The main bottleneck is is_ngonal_pyramidal.
 
-def minfacsieve(end):
-    """
-    Minimum factor sieve.  Returns a list sieve of length (end+1) such that sieve[n] contains the smallest prime factor of n.
-    """
-    sieve = list(range(end+1))
-    primes = list(primegen(isqrt(end)+1))
-    for p in reversed(primes): sieve[p::p] = [p] * (end//p)
-    return sieve
-
-def factorint_mfs(n, mfs):
-    """
-    Given n and a minimum factor sieve mfs, return factorint(n).
-    """
-    fac = {}
-    while n > 1:
-        p = mfs[n]
-        fac[p] = fac.get(p,0) + 1
-        n //= p
-    return fac
-
 try:
-    mfs_limit = 10**8
-    mfs = minfacsieve(mfs_limit)
-    
     data1 = [(A358539, "A358539", is_ngonal),
              (A358540, "A358540", is_ngonal_pyramidal),
-             (A358541, "A358541", is_centered_ngonal)]
+             (A358541, "A358541", is_centered_ngonal),
+             ]
     data2 = [(A358542, "A358542", is_tetrahedral),
              (A358543, "A358543", is_square_pyramidal),
              (A358544, "A358544", is_centered_triangular),
-             (A358545, "A358545", is_centered_square)]
+             (A358545, "A358545", is_centered_square),
+             ]
 
     for x in count(1):
         if x % 1000 == 0: print('\b'*42, x, end='', flush=True)
-        if x < mfs_limit: divs = list(divisors(factorint_mfs(x, mfs)))
-        else:             divs = list(divisors(x))
+        divs = list(divisors(x))
         
         for n in range(3, len(divs)+1):
             for (dictionary, string, test) in data1:
