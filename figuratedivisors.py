@@ -30,7 +30,7 @@ A358542 = {1:1, 2:4, 3:56, 4:20, 5:120, 6:280, 7:560, 8:840, 9:1680, 10:10920, 1
 
 A358543 = {1:1, 2:5, 3:30, 4:140, 5:420, 6:1540, 7:4620, 8:13860, 9:78540, 10:157080, 11:471240, 12:1141140, 13:3603600,
            14:3423420, 15:13693680, 16:30630600, 17:58198140, 18:116396280, 19:214414200, 20:428828400, 21:581981400,
-           22:1163962800, 24:4073869800}
+           22:1163962800, 23:5354228880, 24:4073869800}
 
 A358544 = {1:1, 2:4, 3:20, 4:320, 5:460, 6:5440, 7:14260, 8:12920, 9:168640, 10:103360, 11:594320, 12:3878720, 13:2377280,
            14:9211960, 15:18423920, 16:36847840, 17:125995840, 18:73695680, 19:865924240, 20:976467760, 21:1952935520,
@@ -40,18 +40,18 @@ A358545 = {1:1, 2:5, 3:25, 4:325, 5:1625, 6:1105, 7:5525, 8:27625, 9:160225, 10:
            14:29641625, 15:42459625, 16:444215525, 17:314201225, 18:2003613625, 19:1571006125}
 
 # Completeness data:
-# A358539: any missing terms are >=   75000000
-# A358540: any missing terms are >=   75000000
-# A358541: any missing terms are >= 5000000000
-# A358542: any missing terms are >= 5000000000
-# A358543: any missing terms are >= 5000000000
-# A358544: any missing terms are >= 5000000000
-# A358545: any missing terms are >= 5000000000
+# A358539: any missing terms are >=  540000000
+# A358540: any missing terms are >=  540000000
+# A358541: any missing terms are >= 6000000000
+# A358542: any missing terms are >= 6000000000
+# A358543: any missing terms are >= 6000000000
+# A358544: any missing terms are >= 6000000000
+# A358545: any missing terms are >= 6000000000
 
 def is_square(n):
     """
     Checks whether n is square.
-    If n is square, we return its square root.
+    If n is square, then we return its square root.
     Otherwise, we return False.
     For the sake of speed, we include a bunch of modular prefilters --- otherwise, this would be a major bottleneck.
     """
@@ -83,7 +83,7 @@ def is_ngonal_pyramidal(k, n):
     The lesser side of this inequality is the greater root of 3 * (n-2) * x^2 + 6*x - (n-5),
     which is the derivative of the cubic being considered.
     Therefore the greater critical point of the cubic is < 1, so the cubic is both increasing and concave-up for all x >= 1.
-    Now we need a (preferably slight) overestimate of that positive root that we are looking for.
+    Now we need a (preferably slight) overestimate of that positive root.
     """
     if k == 1: return True
     a, c, d = n-2, 5-n, 6*k
