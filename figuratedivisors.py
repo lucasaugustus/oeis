@@ -19,9 +19,10 @@ A358539 = {3:6, 4:36, 5:210, 6:1260, 7:6426, 8:3360, 9:351000, 10:207900, 11:374
            22:325269404460, 23:14266470332400, 24:11203920000, 25:256653797400, 26:45843256859400, 27:59207908359600,
            28:46822406400}
 
-A358540 = {3:56, 4:140, 5:1440, 6:11550, 7:351120, 8:41580, 9:742560, 10:29279250, 11:8316000, 12:72348396120, 13:3386892600}
+A358540 = {3:56, 4:140, 5:1440, 6:11550, 7:351120, 8:41580, 9:742560, 10:29279250, 11:8316000, 12:72348396120, 13:3386892600,
+           14:578918340}
 
-A358541 = {3:20, 4:325, 5:912, 6:43771, 7:234784, 8:11025, 9:680680, 11:2470852896}
+A358541 = {3:20, 4:325, 5:912, 6:43771, 7:234784, 8:11025, 9:680680, 10:9143308361, 11:2470852896}
 
 A358542 = {1:1, 2:4, 3:56, 4:20, 5:120, 6:280, 7:560, 8:840, 9:1680, 10:10920, 11:9240, 12:18480, 13:55440, 14:120120,
            15:240240, 16:314160, 17:628320, 18:1441440, 19:2282280, 20:7225680, 21:4564560, 22:9129120, 23:13693680,
@@ -30,7 +31,7 @@ A358542 = {1:1, 2:4, 3:56, 4:20, 5:120, 6:280, 7:560, 8:840, 9:1680, 10:10920, 1
 
 A358543 = {1:1, 2:5, 3:30, 4:140, 5:420, 6:1540, 7:4620, 8:13860, 9:78540, 10:157080, 11:471240, 12:1141140, 13:3603600,
            14:3423420, 15:13693680, 16:30630600, 17:58198140, 18:116396280, 19:214414200, 20:428828400, 21:581981400,
-           22:1163962800, 23:5354228880, 24:4073869800}
+           22:1163962800, 23:5354228880, 24:4073869800, 25:8147739600}
 
 A358544 = {1:1, 2:4, 3:20, 4:320, 5:460, 6:5440, 7:14260, 8:12920, 9:168640, 10:103360, 11:594320, 12:3878720, 13:2377280,
            14:9211960, 15:18423920, 16:36847840, 17:125995840, 18:73695680, 19:865924240, 20:976467760, 21:1952935520,
@@ -40,13 +41,13 @@ A358545 = {1:1, 2:5, 3:25, 4:325, 5:1625, 6:1105, 7:5525, 8:27625, 9:160225, 10:
            14:29641625, 15:42459625, 16:444215525, 17:314201225, 18:2003613625, 19:1571006125}
 
 # Completeness data:
-# A358539: any missing terms are >=  540000000
-# A358540: any missing terms are >=  540000000
-# A358541: any missing terms are >= 6000000000
-# A358542: any missing terms are >= 6000000000
-# A358543: any missing terms are >= 6000000000
-# A358544: any missing terms are >= 6000000000
-# A358545: any missing terms are >= 6000000000
+# A358539: any missing terms are >= 1940000000
+# A358540: any missing terms are >= 1940000000
+# A358541: any missing terms are >= 10^10.
+# A358542: any missing terms are >= 10^10.
+# A358543: any missing terms are >= 10^10.
+# A358544: any missing terms are >= 10^10.
+# A358545: any missing terms are >= 10^10.
 
 def is_square(n):
     """
@@ -67,7 +68,7 @@ def is_square(n):
     if r*r == n: return r
     return False
 
-def is_ngonal_pyramidal(k, n):
+def is_ngonal_pyramidal(k, n):                                                              # TODO: This is the main bottleneck.
     """
     Checks whether k is an n-gonal pyramidal number.
     An integer k is n-gonal-pyramidal iff there exists a positive integer x such that x * (x+1) * (n*x - 2*x - n + 5) / 6 == k.
@@ -111,15 +112,9 @@ def is_centered_ngonal(k, n):
     """
     z = 8*k - 8
     if z % n != 0: return False
-    z //= n
-    z += 1
-    x = is_square(z)
+    x = is_square((z//n) + 1)
     if not x: return False
-    x -= 1
-    if x % 2 == 1: return False
-    x //= 2
-    assert ((n * x * (x+1)) // 2) + 1 == k
-    return True
+    return x % 2 == 1
 
 def is_tetrahedral(n):
     """
@@ -159,15 +154,9 @@ def is_centered_triangular(n):
     Solving for x yields x == (sqrt((8n - 5) / 3) - 1) / 2.
     """
     if n % 3 != 1: return False
-    z = (8*n - 5) // 3
-    zr = is_square(z)
-    if not zr: return False
-    if zr % 2 != 1: return False
-    x = (zr - 1) // 2
-    t = (x + 1) * x * 3 + 2
-    assert t % 2 == 0
-    assert t // 2 == n
-    return True
+    x = is_square((8*n - 5) // 3)
+    if not x: return False
+    return x % 2 == 1
 
 def is_centered_square(n):
     """
@@ -176,14 +165,9 @@ def is_centered_square(n):
     Therefore n is centered-square iff there exists an integer x such that n == 2x^2 - 2x + 1.
     Solving for x yields x == (sqrt(2n-1) + 1) / 2.
     """
-    z = 2*n - 1
-    zr = is_square(z)
-    if not zr: return False
-    x = zr + 1
-    assert x % 2 == 0
-    x //= 2
-    assert x**2 + (x-1)**2 == n
-    return True
+    x = is_square(2*n - 1)
+    if not x: return False
+    return x % 2 == 1
 
 def is_ngonal(k, n):
     """
@@ -191,13 +175,10 @@ def is_ngonal(k, n):
     A positive integer k is n-gonal iff there exists an integer x such that ((n-2) * x^2 - (n-4) * x) / 2 == k.
     Solving for x yields x == ((n-4) + sqrt((n-4)^2 + 8 * (n-2) * k)) / (2*n-4).
     """
-    if   k == 1: return True
-    z = (n-4)**2 + 8 * (n-2) * k
-    x = is_square(z)
+    if k == 1: return True
+    x = is_square((n-4)**2 + 8 * (n-2) * k)
     if not x: return False
     return (x + n - 4) % (2*n-4) == 0
-
-# TODO: The main bottleneck is is_ngonal_pyramidal.
 
 try:
     data1 = [(A358539, "A358539", is_ngonal),
