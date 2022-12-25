@@ -41,8 +41,8 @@ A358545 = {1:1, 2:5, 3:25, 4:325, 5:1625, 6:1105, 7:5525, 8:27625, 9:160225, 10:
            14:29641625, 15:42459625, 16:444215525, 17:314201225, 18:2003613625, 19:1571006125}
 
 # Completeness data:
-# A358539: any missing terms are >= 1940000000
-# A358540: any missing terms are >= 1940000000
+# A358539: any missing terms are >= 2 * 10^9.
+# A358540: any missing terms are >= 2 * 10^9.
 # A358541: any missing terms are >= 10^10.
 # A358542: any missing terms are >= 10^10.
 # A358543: any missing terms are >= 10^10.
@@ -190,7 +190,7 @@ try:
              (A358544, "A358544", is_centered_triangular),
              (A358545, "A358545", is_centered_square),
              ]
-
+    
     for x in count(1):
         if x % 1000 == 0: print('\b'*42, x, end='', flush=True)
         divs = list(divisors(x))
@@ -216,4 +216,4 @@ except KeyboardInterrupt:
         print("%s:" % string, dictionary)
         for k in range(1, max(dictionary)+1): print("%s(%2d) == %s" % (string, k, dictionary.get(k, "unknown")))
         print()
-    print("Any missing or subsequent terms, if they exist, are >= %d." % x)
+    print("Any missing or subsequent terms are >= %d." % x)
