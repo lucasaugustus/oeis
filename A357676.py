@@ -1,7 +1,6 @@
 #! /usr/bin/env python3
 
 from labmath import *
-from time import *
 
 def A357477_0(n):   # Smallest k such that sqrt(kn) rounds to a prime
     for k in count(1):
@@ -17,15 +16,9 @@ def A357477_1(n):   # A357477 without floating points
 A357477 = A357477_1
 
 record, index, counter = 0, 0, 0
-last_time, running_avg = 0, 0
 batch = 10**6
 for n in count(1):
-    if n % batch == 0:
-        t = process_time()
-        new_avg = batch / (t - last_time)
-        running_avg = (running_avg + new_avg) / 2
-        print('\b'*42, n//batch, int(t), int(running_avg), int(n/t), end='', flush=True)
-        last_time = t
+    if n % batch == 0: print('\b'*42, n, end='', flush=True)
     a = A357477(n)
     if a > record:
         record, index = a, n
