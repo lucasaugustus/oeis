@@ -37,7 +37,7 @@ int main(void) {
     const char backspaces[] = "\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b";
     const char spaces[] = "                    ";
     for (b = ((uint64_t) 2); b < (((uint64_t) 1) << ((uint64_t) 30)); b += ((uint64_t) 1)) {
-        if ((b & (b-1)) == 0) {
+        if ((b & (b-1)) == 0) { /* If b is a power of 2, then we print some timing data. */
             log = ((int) 0);
             b2 = bb = b;
             while (bb > ((uint64_t) 1)) {
@@ -47,11 +47,11 @@ int main(void) {
             printf("%s2^%d: %d sec%s\n", backspaces, log, (int) (time(NULL) - start), spaces);
         }
         if (b % ((uint64_t) 1) == ((uint64_t) 0)) {
-            printf("%s%" PRId64 " %7f", backspaces, (uint64_t) b, ((float) b) / ((float) b2));
+            printf("%s%" PRIu64 " %7f", backspaces, b, ((float) b) / ((float) b2));
             fflush(stdout);
         }
         x = munhappy(b);
-        if (x != ((uint64_t) 2)) printf("%s%" PRId64 " %" PRId64 "%s\n", backspaces, (uint64_t) b, (uint64_t) x, spaces);
+        if (x != ((uint64_t) 2)) printf("%s%" PRIu64 " %" PRIu64 "%s\n", backspaces, b, x, spaces);
     }
     printf("\n");
     return 0;
