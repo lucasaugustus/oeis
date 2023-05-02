@@ -8,3 +8,4 @@ As of 2022-12-17, there are four exceptions:
 * ``stormer.py`` computes several sequences related to [Størmer's theorem](https://en.wikipedia.org/wiki/St%C3%B8rmer%27s_theorem), namely A002071, A002072, A117581 - 1, A117582, A117583, A145604, A145606, A175607 - 1, A181471, and several sequences not currently listed in the Encyclopedia.
 * ``irred_trinom_f2.py`` and ``irred_trinom_f2.sage`` compute A002475, A057460, A057461, A057463, A057474, and A057476-A057483.
 * ``figuratedivisors.py`` computes A358539-A358545.
+* ``A141874.c`` also computes A362026.
