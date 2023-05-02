@@ -32,26 +32,49 @@ uint64_t munhappy(uint64_t b) { // uses Brent's cycle finder
 }
 
 int main(int argc, char *argv[]) {
-    uint64_t b, x, bb, start, step;
+    uint64_t b, x, bb, start, stop, step;
     int log;
     
     if (argc == 1) {
-        step  = (uint64_t) 1;
-        start = (uint64_t) 2;
-    } else if (argc == 3) {
-        step  = (uint64_t) atoi(argv[1]);
-        start = (uint64_t) atoi(argv[2]);
+        start =  (uint64_t) 2;
+        stop  = ((uint64_t) 1) << 32;
+        step  =  (uint64_t) 1;
+    } else if (argc == 4) {
+        start = (uint64_t) atoi(argv[1]);
+        stop  = (uint64_t) atoi(argv[2]);
+        step  = (uint64_t) atoi(argv[3]);
     } else {
-        printf("Either zero or two arguments are required.\n");
+        printf("This is a program for computing A161874 and A362026.\n");
+        printf("Either zero or three arguments are required.\n");
+        printf("If three arguments are provided as ./munhappy x y z,\n");
+        printf("then we examine all bases in [x, y) that are congruent to x modulo z.\n");
+        printf("If no arguments are provided, then we take (x,y,z) == (2, 1, 1).\n");
+        printf("\n");
+        printf("This program prints two types of output line.\n");
+        printf("The first resembles \"2^17: 25 sec\".\n");
+        printf("This would be printed after examining base 2^17,\n");
+        printf("and indicates that 25 seconds elapsed since starting the program.\n");
+        printf("If the arguments result in not checking base 2^k for some k,\n");
+        printf("then the corresponding output line is skipped.\n");
+        printf("On my computer, running with no arguments produced the following timing data:\n");
+        printf("2^17:   22 sec\n");
+        printf("2^18:   87 sec (x3.95)\n");
+        printf("2^19:  341 sec (x3.92)\n");
+        printf("2^20: 1332 sec (x3.91)\n");
+        printf("\n");
+        printf("The second type of output line resembles \"130 20\".\n");
+        printf("This indicates that 130 is a base whose least unhappy number is > 2 (A161874),\n");
+        printf("and that the least unhappy number in that base is 20 (A362026).\n");
         exit(1);
     }
     printf("Start: %" PRIu64 "\n", start);
+    printf("Stop:  %" PRIu64 "\n", stop );
     printf("Step:  %" PRIu64 "\n", step );
     
     time_t starttime = time(NULL);
     const char backspaces[] = "\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b";
     const char spaces[] = "                    ";
-    for (b = start; b < (((uint64_t) 1) << ((uint64_t) 30)); b += step) {
+    for (b = start; b < stop; b += step) {
         if ((b & (b-1)) == 0) { // if b is a power of 2, then we print some timing info.
             log = __builtin_ctz(b); // number of trailing zeros in b
             bb = b;
@@ -59,7 +82,7 @@ int main(int argc, char *argv[]) {
         }
         if (step == 1) printf("%s%" PRIu64 " %7f", backspaces, (uint64_t) b, ((float) b) / ((float) bb) - 1.0);
         else           printf("%s%" PRIu64       , backspaces, (uint64_t) b                                  );
-        fflush(stdout);
+        //fflush(stdout);
         x = munhappy(b);
         if (x != ((uint64_t) 2)) printf("%s%" PRIu64 " %" PRIu64 "%s\n", backspaces, (uint64_t) b, (uint64_t) x, spaces);
     }
@@ -68,24 +91,6 @@ int main(int argc, char *argv[]) {
 }
 
 /*
-Usage: ./munhappy [a b]
-Behavior: finds the least unhappy number in base b, then a + b, then 2a + b, etc.
-If no arguments are given, then we take a == 1 and b == 2, so that all bases are examined in increasing order.
-
-This program prints two types of output line.
-The first resembles "2^16: 22 sec".
-This indicates that it has examined all bases up to 2^16, and that it took 22 seconds to do so.
-If the arguments result in not checking base 2^k for some k, then the corresponding output line is skipped.
-
-On my computer, which has an AMD 7950X, running with no arguments resulted in the following timing data:
-2^17:     25 sec
-2^18:     93 sec (x3.72)
-2^19:    343 sec (x3.69)
-2^20:   1305 sec (x3.80)
-
-The second type of output line resembles "130 20".
-This indicates that 130 is a base whose least unhappy number is > 2, and that the least unhappy number in that base is 20.
-
 16 3
 18 7
 20 3
