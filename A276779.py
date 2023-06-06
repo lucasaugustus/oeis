@@ -85,6 +85,5 @@ I have edited the sequence's name accordingly.
 15 39154610
 16 117463847
 17 301029987
-18 301029987
 """
 
