@@ -96,6 +96,5 @@ I have edited the sequence's name accordingly.
 26 91561745
 27 183123492
 28 301029986
-29 301029986
 """
 
