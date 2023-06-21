@@ -17,7 +17,7 @@ if getoutput("primecount 1e6") == "78498":
         return int(getoutput("primecount -n %d" % n))
 else: from labmath import nthprime      # Available via pip (https://pypi.org/project/labmath/)
 
-from labmath import hamming, iterprod, log
+from labmath import hamming, iterprod
 
 # All values of P(n) factor fully over {2,3,5,7}.
 
