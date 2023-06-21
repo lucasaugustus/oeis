@@ -30,7 +30,6 @@ def totient(x):
     return tot
 
 for (k,P) in enumerate(hamming(2,3,5,7)):
-    if P < 10**17: continue
     if P > 9**45: break
     print('\b'*80, P, k, round(log(P,10),3), end='   ', flush=True)
     n = nthprime(P) + totient(P)
