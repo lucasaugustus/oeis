@@ -1,6 +1,6 @@
 #! /usr/bin/env python3
 
-# This file searches for integers n such that n == nthrpime(P(n)) + totient(P(n)),
+# This file searches for integers n such that n == nthprime(P(n)) + totient(P(n)),
 # where P(n) is the product of the decimal digits of n.  It proceeds by checking
 # increasingly large values of P.
 
