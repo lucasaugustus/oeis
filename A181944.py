@@ -61,10 +61,8 @@ def isconvex(x1, y1, x2, y2, x3, y3, x4, y4):
         #assert p*x + q*y == r
         #assert s*x + t*y == u
         # Now we check whether (x,y) is in the interior of the segments ab and cd.
-        if (ax <= x <= bx or bx <= x <= ax) and \
-           (ay <= y <= by or by <= y <= ay) and \
-           (cx <= x <= dx or dx <= x <= cx) and \
-           (cy <= y <= dy or dy <= y <= cy): return True
+        if (ax <= x <= bx or bx <= x <= ax) and (ay <= y <= by or by <= y <= ay) and \
+           (cx <= x <= dx or dx <= x <= cx) and (cy <= y <= dy or dy <= y <= cy): return True
     return False
 
 def normalizequad(x1, y1, x2, y2, x3, y3, x4, y4):
