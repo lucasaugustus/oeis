@@ -55,13 +55,13 @@ def isrhombus(x1, y1, x2, y2, x3, y3, x4, y4):
         #assert s*x + t*y == u
         # Now we check whether (x,y) is in the interior of the segments ab and cd.
         if (ax <= x <= bx or bx <= x <= ax) and (ay <= y <= by or by <= y <= ay) and \
-           (cx <= x <= dx or dx <= x <= cx) and (cy <= y <= dy or dy <= y <= cy): convex, pair, mx, my = True, pairindex, x, y
+           (cx <= x <= dx or dx <= x <= cx) and (cy <= y <= dy or dy <= y <= cy): convex, pair = True, pairindex
     if not convex: return False
     # We now know that the quadrilateral is convex.
     if pair == 1: (ax, ay, cx, cy, bx, by, dx, dy) = (x1, y1, x2, y2, x3, y3, x4, y4)
     if pair == 2: (ax, ay, cx, cy, bx, by, dx, dy) = (x1, y1, x3, y3, x2, y2, x4, y4)
     if pair == 3: (ax, ay, cx, cy, bx, by, dx, dy) = (x1, y1, x4, y4, x2, y2, x3, y3)
-    # The diagonals are ac and bd.  They intersect at (mx, my).  The edges are ab, bc, cd, and da.
+    # The diagonals are ac and bd.  The edges are ab, bc, cd, and da.
     lab = (ax - bx)**2 + (ay - by)**2
     lbc = (bx - cx)**2 + (by - cy)**2
     lcd = (cx - dx)**2 + (cy - dy)**2
@@ -138,4 +138,3 @@ doit_slowly()
 """
 doit_faster()
 #"""
-
