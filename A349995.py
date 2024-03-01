@@ -38,7 +38,7 @@ while True:
         if len(data) >= 262:
             print(data[:-2])
             break
-#                                                                       TODO n -= 1 in data
+
 """
 n A349995(n) A350098(n) A350099(n)
 1 6 15 21
