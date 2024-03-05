@@ -9,3 +9,4 @@ As of 2022-12-17, there are 6 exceptions:
 * ``irred_trinom_f2.py`` and ``irred_trinom_f2.sage`` compute A002475, A057460, A057461, A057463, A057474, and A057476-A057483.
 * ``figuratedivisors.py`` computes A358539-A358545.
 * ``A161874.c`` also computes A362026.
+* ``A349995.py`` also computes A350098 and A350099.
