@@ -4,7 +4,8 @@ from itertools import count
 from math import prod
 
 def istetra(a,b,c,d,e,f):
-    # Determines whether there exists a tetrahedron whose side lengths are the given numbers in a particular order.
+    # Determines whether there exists a tetrahedron whose side lengths are the given numbers,
+    # with the restriction that (a,d), (b,e), and (d,f) are opposite each other.
     # We employ https://ems.press/content/serial-article-files/45383; to match this code's notation to that of the article,
     # use (a, b, c, d, e, f) == (x, y, z, xbar, ybar, zbar).
     
@@ -22,6 +23,7 @@ def istetra(a,b,c,d,e,f):
 
 print(0, 0)
 
+oldtotal = 1
 for n in count(1):
     tuples = set()
     for a in range(1, n+1):
@@ -37,4 +39,5 @@ for n in count(1):
         multiplicities = {}
         for x in t: multiplicities[x] = multiplicities.get(x,0) + 1
         total += 720 // prod((1, 1, 2, 6, 24, 120, 720)[x] for x in multiplicities.values())
-    print(n, total)
+    print(n, total, total / n**6)
+    oldtotal = total
