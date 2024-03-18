@@ -10,3 +10,4 @@ As of 2022-12-17, there are 6 exceptions:
 * ``figuratedivisors.py`` computes A358539-A358545.
 * ``A161874.c`` also computes A362026.
 * ``A349995.py`` also computes A350098 and A350099.
+* ``A076542.py`` also computes A077030, A077031, A077032, and A077033.
