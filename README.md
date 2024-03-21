@@ -11,3 +11,4 @@ As of 2022-12-17, there are 6 exceptions:
 * ``A161874.c`` also computes A362026.
 * ``A349995.py`` also computes A350098 and A350099.
 * ``A076542.py`` also computes A077030, A077031, A077032, and A077033.
+* ``A350097.py`` also computes A350095 and A350096.
