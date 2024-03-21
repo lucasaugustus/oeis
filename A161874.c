@@ -48,7 +48,7 @@ int main(int argc, char *argv[]) {
         printf("Either zero or three arguments are required.\n");
         printf("If three arguments are provided as ./munhappy x y z,\n");
         printf("then we examine all bases in [x, y) that are congruent to x modulo z.\n");
-        printf("If no arguments are provided, then we take (x,y,z) == (2, 1, 1).\n");
+        printf("If no arguments are provided, then we take (x,y,z) == (2, 4294967296, 1).\n");
         printf("\n");
         printf("This program prints two types of output line.\n");
         printf("The first resembles \"2^17: 25 sec\".\n");
