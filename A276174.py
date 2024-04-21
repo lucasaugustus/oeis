@@ -2,7 +2,6 @@
 
 from labmath import primegen    # Available via pip (https://pypi.org/project/labmath/)
 
-data = ""
 k = 0
 for (n,p) in enumerate(primegen(), start=1):
     total = 0
@@ -21,8 +20,4 @@ for (n,p) in enumerate(primegen(), start=1):
     if total == p:
         k += 1
         print("\b"*42 + " "*len("%d %d %d" % (n, p, total)) + ' ' + '\b'*42 + str(k), p)
-        data += str(p) + ", "
-        if len(data) >= 262:
-            print(data[:-2])
-            exit()
 
