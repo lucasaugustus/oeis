@@ -1,6 +1,6 @@
 #! /usr/bin/env python3
 
-from labmath import mpz, isprime, primegen
+from labmath import mpz, isprime, primegen      # Available via pip (https://pypi.org/project/labmath/)
 from gmpy2 import const_pi
 
 
