@@ -41,11 +41,11 @@ for n in count(1):
         kk = k*k
         
         for (u,v) in product(divisors(kfac), repeat=2):
+            if not u < v: continue
             uu, vv = u*u, v*v
             if (2*uu*vv) % (uu + vv) != 0: continue
             mm = 2 * uu * vv // (uu + vv)
             if (k*k) % mm != 0: continue
-            if not (uu < mm < vv): continue
             m = isqrt(mm)
             if m*m != mm: continue
             total += 1
@@ -54,8 +54,3 @@ for n in count(1):
         if total == n: break
     
     print('\b'*42, n, ' ', k, sep='')
-
-"""
-Fix existing terms
-Edit title to replace "triples" with "sets"
-"""
