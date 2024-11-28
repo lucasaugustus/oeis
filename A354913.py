@@ -3,6 +3,7 @@
 from labmath import primegen        # Available via pip (https://pypi.org/project/labmath/)
 from math import comb, isqrt
 
+print("n A354913(n) A376552(n)")
 print(0, 1)
 print(1, -2)
 
