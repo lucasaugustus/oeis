@@ -18,7 +18,7 @@ n stores the degree of the polynomial stored in a.
 #print(2)
 print(-2, 1)
 
-for q in primegen(20):
+for q in primegen():
     if q == 2: continue
     #print(q)
     
