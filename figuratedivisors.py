@@ -1,6 +1,6 @@
 #! /usr/bin/env python3
 
-from labmath import *       # Available via pip (https://pypi.org/project/labmath/)
+from labmath3 import *    # Available via pip (https://pypi.org/project/labmath3 & https://github.com/lucasaugustus/labmath3)
 
 print("Press ctrl+c at any time to halt and print a collated version of the results.")
 
@@ -14,6 +14,7 @@ print("Press ctrl+c at any time to halt and print a collated version of the resu
 # A358544: a(n) is the smallest number with exactly n divisors that are centered triangular numbers.
 # A358545: a(n) is the smallest number with exactly n divisors that are centered square numbers.
 
+"""
 A358539 = {3:6, 4:36, 5:210, 6:1260, 7:6426, 8:3360, 9:351000, 10:207900, 11:3749460, 12:1153152, 13:15036840, 14:204204000,
            15:213825150, 16:11737440, 17:91797866160, 18:1006485480, 19:2310808500, 20:4966241280, 21:22651328700,
            22:325269404460, 23:14266470332400, 24:11203920000, 25:256653797400, 26:45843256859400, 27:59207908359600,
@@ -39,6 +40,14 @@ A358544 = {1:1, 2:4, 3:20, 4:320, 5:460, 6:5440, 7:14260, 8:12920, 9:168640, 10:
 
 A358545 = {1:1, 2:5, 3:25, 4:325, 5:1625, 6:1105, 7:5525, 8:27625, 9:160225, 10:1022125, 11:801125, 12:5928325, 13:8491925,
            14:29641625, 15:42459625, 16:444215525, 17:314201225, 18:2003613625, 19:1571006125}
+"""
+A358539 = {}
+A358540 = {}
+A358541 = {}
+A358542 = {}
+A358543 = {}
+A358544 = {}
+A358545 = {}
 
 # Completeness data:
 # A358539: any missing terms are >= 2 * 10^9.
@@ -87,6 +96,14 @@ def is_ngonal_pyramidal(k, n):                                                  
     Now we need a (preferably slight) overestimate of that positive root.
     """
     if k == 1: return True
+    
+    # Modulo 5, the cubic has no solutions x for 10 of the 25 (k,n) pairs.
+    # Modulo 7, the cubic has no solutions x for 19 of the 49 (k,n) pairs.
+    # Together, these remove 775 of the 1225 (k,n) pairs modulo 35, or about 63% of the (k,n) space.
+    if (k%5, n%5) in {(2,0),(2,2),(2,3),(2,4),(3,1),(3,3),(3,4),(4,0),(4,1),(4,2)}: return False
+    if (k%7, n%7) in {(2,0),(2,2),(2,3),(2,5),(2,6),(3,1),(3,4),(3,5),(3,6),(4,1),\
+                            (4,2),(4,4),(5,1),(5,2),(5,3),(5,6),(6,0),(6,1),(6,6)}: return False
+    
     a, c, d = n-2, 5-n, 6*k
     lo, hi = 1, 1 + max(3, d//a + 1)   # From Cauchy's bound
     # Since the cubic is increasing and concave-up on the intervals we will be considering, the secant line from lo to hi will
@@ -191,13 +208,20 @@ try:
              (A358545, "A358545", is_centered_square),
              ]
     
-    for x in count(1):
+    for (x,xfac) in enumerate(factorsieve(), start=1):
         if x % 1000 == 0: print('\b'*42, x, end='', flush=True)
-        divs = list(divisors(x))
+        divs = list(divisors(xfac))
         
         for n in range(3, len(divs)+1):
             for (dictionary, string, test) in data1:
-                if n not in dictionary and len([d for d in divs if test(d, n)]) == n:
+                if n in dictionary: continue
+                #if len([d for d in divs if test(d, n)]) == n:
+                passes, remaining = 0, len(divs)
+                for d in divs:
+                    if passes > n or passes + remaining < n: break
+                    remaining -= 1
+                    if test(d,n): passes += 1
+                if passes == n:
                     dictionary[n] = x
                     print('\b'*42, "%s(%2d) == %d" % (string, n, x))
         
@@ -217,3 +241,4 @@ except KeyboardInterrupt:
         for k in range(1, max(dictionary)+1): print("%s(%2d) == %s" % (string, k, dictionary.get(k, "unknown")))
         print()
     print("Any missing or subsequent terms are >= %d." % x)
+
