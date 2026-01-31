@@ -4,7 +4,7 @@ from itertools import count, permutations
 from time import time
 from datetime import datetime, timedelta
 
-print("n: A350969(n) and A350970(n)")
+print("n: A358569(n) and A358570(n)")
 print("0: 1 and 1")
 
 def toeplitz(entries):  # Toeplitz matrix using the provided numbers.  First goes on the bottom left, last on the top right.
@@ -35,7 +35,7 @@ for n in count(1):
     print(('\b'*160) + outstr + (" " * (79-len(outstr))))
 
 """
-n: A350969(n) and A350970(n)
+n: A358569(n) and A358570(n)
 0: 1 and 1
 1: 0 and 0                                                                     
 2: 1 and 4                                                                     
